@@ -154,8 +154,11 @@ Now for $n+1$, we will have an extra $R$ & $B$ to be added to the existing seque
 Let the random variable $X$ denote the expected pay-off for any configuration & $P(X)$ denote the probability of that configuration. Then the cummulative distribution function $F_X(x)=P(X\le x)$ can be defined as follows:
 
 $$ F_X(x)=\frac{n_k}{Total\space configurations} $$
+
 $$ F_X(x)=\frac{\binom{2n}{n}-\binom{2n}{n+x+1}}{\binom{2n}{n}} $$
+
 $$ F_X(x)=1-\frac{\binom{2n}{n+x+1}}{\binom{2n}{n}} $$
+
 $$ F_X(x)=1-\frac{\binom{52}{x+27}}{\binom{52}{26}} $$
 
 ```python
@@ -184,13 +187,15 @@ $n_k$ denotes the number of deck configurations such that the maximum payoff is 
 Let $F_k$ denotes the number of deck configurations such that the maximum payoff is $\ge k$. Then clearly,
 
 $$ F_k = Total\space configurations - n_{k-1} $$
+
 $$ F_k = \binom{2n}{n} - \left(\binom{2n}{n}-\binom{2n}{n+k-1+1}\right) $$
+
 $$ F_k = \binom{2n}{n+k}\quad;\quad k\ge   1 $$
 
 $f_k$ denotes the probability that the maximum payoff is $\ge k$. Then clearly,
 
-$$
-f_0=1 $$
+$$ f_0=1 $$
+
 $$
 f_k=\frac{F_k}{\binom{2n}{n}}=\frac{\binom{2n}{n+k}}{\binom{2n}{n}} \quad ; \quad k\ge 1
 $$
@@ -207,16 +212,22 @@ $$
 Using expression obtained in Q2.7,
 
 $$ \frac{f_{k+1}}{f_k}=\frac{n-\left(k+1\right)+1}{n+k+1} $$
+
 $$ \frac{f_{k+1}}{f_k}=\frac{n-k}{n+k+1} $$
+
 $$ f_{k+1}=f_k\left(\frac{n-k}{n+k+1} \right)\quad ; \quad k\le26 $$
+
 $$ f_{27}=0 $$
 
 Let the random variable $X$ denote the maximum pay-off of any configuration & $P(X=k)$ denote the probabiltity of maximum pay-off being $k$. Then,
 
 
 $$ P(X=k)=f_k-f_{k+1} $$
+
 $$ P(X=k)=f_k-f_k \left(\frac{n-k}{n+k+1}\right) $$
+
 $$ P(X=k)=f_k\left(1-\frac{n-k}{n+k+1}\right) $$
+
 $$ P(X=k)=\left(\frac{2k+1}{n+k+1}\right) f_k $$
 
 ```python
